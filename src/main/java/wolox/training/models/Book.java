@@ -1,51 +1,77 @@
 package wolox.training.models;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
-@Entity	
-class Book {
+
+@Entity
+@Table(name="Books")
+public class Book {
   
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;	
- 
-    @Column(nullable = false)
+    
+    private String genre;
+    
+    @NotNull
     private String author;
     
-    @Column(nullable = false)
+    @NotNull
     private String image;
     
-    @Column(nullable = false, unique = true)
+    @NotNull
     private String title;
     
-    @Column(nullable = false)
+    @NotNull
     private String subtitle;
     
-    @Column(nullable = false) 
+    @NotNull
     private String publisher;
     
-    @Column(nullable = false)
+    @NotNull
     private String year;
     
-    @Column(nullable = false)
+    @NotNull
     private int pages;
     
-    @Column(nullable = false)
+    @NotNull
     private String isbn;
     
+    public Book() {
+
+    }
+    
+    public Book(long id, String author, String image, String title, String subtitle, String publisher, String year,
+    int pages, String isbn) {
+    	super();
+    	this.id = id;
+    	this.author = author;
+    	this.image = image;
+    	this.title = title;
+    	this.subtitle = subtitle;
+    	this.publisher = publisher;
+    	this.year = year;
+    	this.pages = pages;
+    	this.isbn = isbn;
+    }
 
 	public long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public String getGenre() {
+		return genre;
 	}
-
+	
+	public void setGenre(String genre) {
+		this.genre = genre;
+	}
+	
 	public String getAuthor() {
 		return author;
 	}
@@ -110,19 +136,7 @@ class Book {
 		this.isbn = isbn;
 	}
 
-	public Book(long id, String author, String image, String title, String subtitle, String publisher, String year,
-	        int pages, String isbn) {
-		super();
-		this.id = id;
-		this.author = author;
-		this.image = image;
-		this.title = title;
-		this.subtitle = subtitle;
-		this.publisher = publisher;
-		this.year = year;
-		this.pages = pages;
-		this.isbn = isbn;
-	}
+
 
 	
 }
