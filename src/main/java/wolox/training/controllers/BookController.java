@@ -32,7 +32,8 @@ public class BookController {
 		return bookRepository.findFirstByAuthor(author)
               .orElseThrow(() -> new BookNotFoundException("No se encontro el libro del autor "));
 	}
-
+	
+//	 Cada ResponseStatus se configura para devolver una respuesta estandarizada a la web
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public Book createBook(@RequestBody Book book) {
