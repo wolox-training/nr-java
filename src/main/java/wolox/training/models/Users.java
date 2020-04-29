@@ -27,7 +27,7 @@ public class Users{
     private long id;
     
     @NotNull
-    private String username;
+    private String userName;
     
     @NotNull
     private String name;
@@ -36,10 +36,10 @@ public class Users{
     private Date birthDate;
     
     @ManyToMany(cascade = {CascadeType.REFRESH, CascadeType.MERGE})
-    @JoinTable(name = "user_book", 
-      joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), 
-      inverseJoinColumns = @JoinColumn(name = "book_id", 
-      referencedColumnName = "id"))
+//    @JoinTable(name = "user_book", 
+//      joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), 
+//      inverseJoinColumns = @JoinColumn(name = "book_id", 
+//      referencedColumnName = "id"))
     private List<Book> books = new ArrayList<Book>();
 
     
@@ -52,11 +52,11 @@ public class Users{
     }
 
 	public String getUsername() {
-		return username;
+		return userName;
 	}
 
 	public void setUsername(String username) {
-		this.username = username;
+		this.userName = username;
 	}
 
 	public String getName() {
@@ -85,7 +85,7 @@ public class Users{
     
     public List<Book> AgregarLibro(Book userBook) throws BookAlreadyOwnedException{
     	if (books.contains(userBook)) {
-    		throw new BookAlreadyOwnedException();
+    		throw new BookAlreadyOwnedException("El libro ya existe");
 		} else {
 			this.books.add(userBook);
 		}
