@@ -20,7 +20,7 @@ import wolox.training.exceptions.BookAlreadyOwnedException;
 
 @Entity
 @Table(name="Users")
-public class Users{
+public class User{
 	
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -43,7 +43,7 @@ public class Users{
     private List<Book> books = new ArrayList<Book>();
 
     
-    public Users() {
+    public User() {
     	
     }
 
