@@ -36,10 +36,6 @@ public class User{
     private Date birthDate;
     
     @ManyToMany(cascade = {CascadeType.REFRESH, CascadeType.MERGE})
-//    @JoinTable(name = "user_book", 
-//      joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), 
-//      inverseJoinColumns = @JoinColumn(name = "book_id", 
-//      referencedColumnName = "id"))
     private List<Book> books = new ArrayList<Book>();
 
     
@@ -83,7 +79,7 @@ public class User{
 		this.books = books;
 	}
     
-    public List<Book> AgregarLibro(Book userBook) throws BookAlreadyOwnedException{
+    public List<Book> addBook(Book userBook) throws BookAlreadyOwnedException{
     	if (books.contains(userBook)) {
     		throw new BookAlreadyOwnedException("El libro ya existe");
 		} else {
@@ -92,7 +88,7 @@ public class User{
     	return (List<Book>) Collections.unmodifiableList(books);    	
     }
     
-    public void EliminarLibro(Book userBook) {
+    public void removeBook(Book userBook) {
     	this.books.remove(userBook);	
     }	
 
