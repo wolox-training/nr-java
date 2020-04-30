@@ -91,5 +91,9 @@ public class Users{
 		}
     	return (List<Book>) Collections.unmodifiableList(books);    	
     }
+    
+    public void EliminarLibro(Book userBook) {
+    	this.books.remove(userBook);	
+    }	
 
 }
