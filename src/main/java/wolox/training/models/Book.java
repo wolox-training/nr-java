@@ -21,7 +21,7 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;	
     
-    @ManyToMany(mappedBy = "Books")
+    @ManyToMany(mappedBy = "books")
     @JsonIgnore
     private List<User> User;
     
