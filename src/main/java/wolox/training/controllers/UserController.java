@@ -77,7 +77,7 @@ public class UserController {
 	
 	@PatchMapping("/{userid}/book/{bookid}")
 	@ResponseStatus(HttpStatus.OK)
-	public User agregarLibro(@PathVariable(required = true) Long userid, @PathVariable(required = true) Long bookid) {
+	public User addBook(@PathVariable(required = true) Long userid, @PathVariable(required = true) Long bookid) {
 		User user = userRepository.findById(userid)
 		        .orElseThrow(() -> new UserNotFoundException("No existe el Usuario ingresado"));
 		Book book = bookRepository.findById(bookid)
@@ -88,7 +88,7 @@ public class UserController {
 
 	@DeleteMapping("/{userid}/book/{bookid}")
 	@ResponseStatus(HttpStatus.OK)
-	public User borrarLibro(@PathVariable(required = true) Long userid, @PathVariable(required = true) Long bookid) {
+	public User deleteBook(@PathVariable(required = true) Long userid, @PathVariable(required = true) Long bookid) {
 		User user = userRepository.findById(userid)
 		        .orElseThrow(() -> new UserNotFoundException("No existe el Usuario ingresado"));
 		Book book = bookRepository.findById(bookid)
