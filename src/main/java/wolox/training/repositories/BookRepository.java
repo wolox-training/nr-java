@@ -13,5 +13,7 @@ public interface BookRepository extends JpaRepository<Book, Long> {
 	
 	public Optional<Book> FindFirstByTitle(String title);
 
+	public Iterable<Book> findByAuthor(String author);
+
 }
 
