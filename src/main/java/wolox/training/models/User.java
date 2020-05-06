@@ -47,12 +47,12 @@ public class User{
     	return id;
     }
 
-	public String getUsername() {
+	public String getUserName() {
 		return userName;
 	}
 
-	public void setUsername(String username) {
-		this.userName = username;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public String getName() {
