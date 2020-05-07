@@ -47,11 +47,11 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
             <exclusions>
-            	<exclusion>
+            	 <!--<exclusion>
                 	<groupId>org.junit.vintage</groupId>
                     <artifactId>junit-vintage-engine</artifactId>
-				</exclusion>
-			</exclusions>
+				</exclusion>--> 
+			</exclusions>	
 		</dependency>
 	</dependencies>
 

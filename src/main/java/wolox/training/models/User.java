@@ -1,8 +1,8 @@
 package wolox.training.models;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -10,8 +10,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -22,7 +20,7 @@ import wolox.training.exceptions.BookAlreadyOwnedException;
 @Table(name="Users")
 public class User{
 	
-    @Id
+	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     
@@ -33,7 +31,7 @@ public class User{
     private String name;
     
     @NotNull
-    private Date birthDate;
+    private LocalDate birthDate;
     
     @ManyToMany(cascade = {CascadeType.REFRESH, CascadeType.MERGE})
     private List<Book> books = new ArrayList<Book>();
@@ -42,6 +40,13 @@ public class User{
     public User() {
     	
     }
+
+	public User(@NotNull String userName, @NotNull String name, @NotNull LocalDate birthDate) {
+		super();
+		this.userName = userName;
+		this.name = name;
+		this.birthDate = birthDate;		
+	}
 
     public long getId() {
     	return id;
@@ -63,11 +68,11 @@ public class User{
 		this.name = name;
 	}
 
-	public Date getBirthDate() {
+	public LocalDate getBirthDate() {
 		return birthDate;
 	}
 
-	public void setBirthDate(Date birthDate) {
+	public void setBirthDate(LocalDate birthDate) {
 		this.birthDate = birthDate;
 	}
 
