@@ -4,23 +4,22 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Order;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import wolox.training.models.Book;
 
-@RunWith(SpringRunner.class)
 @DataJpaTest
 public class BookRepositoryTest {
 	
 	@Autowired
 	private BookRepository bookRepository;
 	
-	@Before
+	@BeforeAll
 	public void setUp() {
 		Book darkelf1 = new Book("R. A. Salvatore", "imagen.png", "The Dark Elf", "Homeland", 
 				"TSR", "1990",  352, "0880389052");
@@ -37,6 +36,7 @@ public class BookRepositoryTest {
 	}
 	
 	@Test
+	@Order(1)
 	public void GivenLoadedAuthor_whenSearchAuthor_ThenFindFirstBook () {
 		String author = "R. A. Salvatore";
 		Book foundBook = bookRepository.findFirstByAuthorOrderByYear(author).orElse(new Book());
@@ -46,6 +46,7 @@ public class BookRepositoryTest {
 	
 
 	@Test
+	@Order(2)
 	public void GivenLoadedBooks_whenSearchAuthor_ThenFindAllBooksOfAuthor () {
 		String author = "R. A. Salvatore";
 		Iterable<Book> books = bookRepository.findByAuthor(author);
@@ -53,12 +54,14 @@ public class BookRepositoryTest {
 	}
 	
 	@Test
+	@Order(3)
 	public void GivenLoadedBooks_whenSearchNonExistentAuthor_ThenNotFindBook() {
 		String author = "J. K. Rowling";
 		assertThat(!bookRepository.findFirstByAuthor(author).isPresent());
 	}
 	
 	@Test
+	@Order(4)
 	public void GivenLoadedBooks_whenSearchForTitle_ThenFindBookBySubtitle() {
 		String title = "The Dark Elf";
 		String subtitle = "Sojourn";
@@ -73,6 +76,5 @@ public class BookRepositoryTest {
 //		assertThat(foundSubtitle.getSubtitle().equals(subtitle));
 
 	}
-
-	
 }
+
