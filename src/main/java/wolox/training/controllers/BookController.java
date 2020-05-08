@@ -35,6 +35,20 @@ public class BookController {
               .orElseThrow(() -> new BookNotFoundException("No se encontro el libro del autor "));
 	}
 	
+	@GetMapping
+	@RequestMapping(params = "title")
+	public Book findFirstByTitle(@RequestParam(required = true) String title) {
+		return bookRepository.findFirstByTitle(title)
+              .orElseThrow(() -> new BookNotFoundException("No se encontro el titulo del libro"));
+	}
+	
+	@GetMapping
+	@RequestMapping(params = "subtitle")
+	public Book findBySubtitle(@RequestParam(required = true) String subtitle) {
+		return bookRepository.findBySubtitle(subtitle)
+              .orElseThrow(() -> new BookNotFoundException("No se encontro el subtitulo del libro"));
+	}
+	
 // Cada ResponseStatus se configura para devolver una respuesta estandarizada a la web
 // La anotacion @Valid ejecuta las validaciones en el atributo de la entidad antes de avanzar con el impacto.
 	@PostMapping

@@ -21,7 +21,7 @@ public class BookRepositoryTest {
 	private BookRepository bookRepository;
 	
 	@Before
-	public void init() {
+	public void setUp() {
 		Book darkelf1 = new Book("R. A. Salvatore", "imagen.png", "The Dark Elf", "Homeland", 
 				"TSR", "1990",  352, "0880389052");
 		bookRepository.save(darkelf1);

@@ -22,17 +22,17 @@ public class UserRepositoryTest {
 	UserRepository userRepository;
 
 	@Before
-    public void init() {
+    public void setUp() {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");		
 		
-		User user1 = new User("Ironman", "Tony Stark", LocalDate.parse("1970-05-29", formatter));
-		userRepository.save(user1);
-		User user2 = new User("CapiAmer", "Steve Rogers", LocalDate.parse("1918-06-04", formatter));
-		userRepository.save(user2);
-		User user3 = new User("Spiderman", "Peter Parker", LocalDate.parse("2001-05-10", formatter));
-		userRepository.save(user3);
-		User user4 = new User("Hawkeye", "Clint Barton", LocalDate.parse("0001-12-31", formatter));
-		userRepository.save(user4);
+		User hawkeye = new User("Hawkeye", "Clint Barton", LocalDate.parse("0001-12-31", formatter));
+		userRepository.save(hawkeye);
+		User ironman = new User("Ironman", "Tony Stark", LocalDate.parse("1970-05-29", formatter));
+		userRepository.save(ironman);
+		User spiderman = new User("Spiderman", "Peter Parker", LocalDate.parse("2001-05-10", formatter));
+		userRepository.save(spiderman);
+		User capiamer = new User("CapiAmer", "Steve Rogers", LocalDate.parse("1918-06-04", formatter));
+		userRepository.save(capiamer);
 		
 	}
 
