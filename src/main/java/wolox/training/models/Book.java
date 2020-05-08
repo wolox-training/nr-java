@@ -55,7 +55,7 @@ public class Book {
 
     }
     
-    public Book(long id, String author, String image, String title, String subtitle, String publisher, String year,
+    public Book(String author, String image, String title, String subtitle, String publisher, String year,
     int pages, String isbn) {
     	super();
     	this.id = id;
