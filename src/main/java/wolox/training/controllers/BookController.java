@@ -1,14 +1,20 @@
 package wolox.training.controllers;
 
+import java.util.Optional;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import wolox.training.dtos.OpenLibraryBook;
 import wolox.training.exceptions.BookIdMismatchException;
 import wolox.training.exceptions.BookNotFoundException;
 import wolox.training.models.Book;
 import wolox.training.repositories.BookRepository;
+import wolox.training.services.OpenLibraryService;
 
 @RestController
 @RequestMapping("/api/books")
@@ -16,6 +22,9 @@ public class BookController {
 
 	@Autowired
 	private BookRepository bookRepository;
+	
+	@Autowired
+	private OpenLibraryService openLibraryService;
 	
 	@GetMapping
 	public Iterable<Book> findAll() {
@@ -47,6 +56,22 @@ public class BookController {
 	public Book findBySubtitle(@RequestParam(required = true) String subtitle) {
 		return bookRepository.findBySubtitle(subtitle)
               .orElseThrow(() -> new BookNotFoundException("No se encontro el subtitulo del libro"));
+	}
+	
+	@GetMapping
+	@RequestMapping(params = "isbn")
+	public ResponseEntity<Book> findByIsbn(@RequestParam(name = "isbn", required = true) String isbn) {
+		Optional<Book> optionalBook = bookRepository.findByIsbn(isbn);
+		if (optionalBook.isPresent()) {
+			return new ResponseEntity<Book>(optionalBook.get(), HttpStatus.OK);
+		} else {
+			OpenLibraryBook book = openLibraryService.bookInfo(isbn)
+				.orElseThrow(() -> new BookNotFoundException("No se encontro libro con isbn=" + isbn));
+			Book foundBook = new Book(book.getAuthors().get(0).getName(),"", book.getTitle(), 
+					book.getSubtitle(), book.getPublishers().get(0).getName(),
+					book.getPublishDate(), book.getNumberOfPages(), isbn); 
+			return new ResponseEntity<Book>(bookRepository.save(foundBook), HttpStatus.CREATED);				
+		}
 	}
 	
 // Cada ResponseStatus se configura para devolver una respuesta estandarizada a la web
