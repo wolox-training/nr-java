@@ -12,62 +12,59 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-
 @Entity
-@Table(name="Books")
+@Table(name = "Books")
 public class Book {
-  
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;	
-    
-    @ManyToMany(mappedBy = "books")
-    @JsonIgnore
-    private List<User> User;
-    
-    private String genre;
-    
-    @NotNull
-    private String author;
-    
-    @NotNull
-    private String image;
-    
-    @NotNull
-    private String title;
-    
-    @NotNull
-    private String subtitle;
-    
-    @NotNull
-    private String publisher;
-    
-    @NotNull
-    private String year;
-    
-    @NotNull
-    private int pages;
-    
-    @NotNull
-    private String isbn;
-    
-    public Book() {
 
-    }
-    
-    public Book(String author, String image, String title, String subtitle, String publisher, String year,
-    int pages, String isbn) {
-    	super();
-    	this.id = id;
-    	this.author = author;
-    	this.image = image;
-    	this.title = title;
-    	this.subtitle = subtitle;
-    	this.publisher = publisher;
-    	this.year = year;
-    	this.pages = pages;
-    	this.isbn = isbn;
-    }
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
+
+	@ManyToMany(mappedBy = "books")
+	@JsonIgnore
+	private List<User> User;
+
+	private String genre;
+
+	@NotNull
+	private String author;
+
+	@NotNull
+	private String image;
+
+	@NotNull
+	private String title;
+
+	@NotNull
+	private String subtitle;
+
+	@NotNull
+	private String publisher;
+
+	@NotNull
+	private String year;
+
+	@NotNull
+	private int pages;
+
+	@NotNull
+	private String isbn;
+
+	public Book() {
+	}
+
+	public Book(String author, String image, String title, String subtitle, String publisher, String year, int pages,
+	        String isbn) {
+		super();
+		this.author = author;
+		this.image = image;
+		this.title = title;
+		this.subtitle = subtitle;
+		this.publisher = publisher;
+		this.year = year;
+		this.pages = pages;
+		this.isbn = isbn;
+	}
 
 	public long getId() {
 		return id;
@@ -76,11 +73,11 @@ public class Book {
 	public String getGenre() {
 		return genre;
 	}
-	
+
 	public void setGenre(String genre) {
 		this.genre = genre;
 	}
-	
+
 	public String getAuthor() {
 		return author;
 	}
@@ -145,7 +142,4 @@ public class Book {
 		this.isbn = isbn;
 	}
 
-
-
-	
 }
