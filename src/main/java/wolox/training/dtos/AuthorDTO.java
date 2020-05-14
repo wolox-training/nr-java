@@ -2,8 +2,6 @@ package wolox.training.dtos;
 
 public class AuthorDTO {
 
-	private static final long serialVersionUID = 1L;
-
 	private String url;
 	private String name;
 
