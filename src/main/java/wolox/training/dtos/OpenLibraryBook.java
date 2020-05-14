@@ -81,10 +81,6 @@ public class OpenLibraryBook {
 		this.authors = authors;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
 	public CoverDTO getCover() {
 		return cover;
 	}

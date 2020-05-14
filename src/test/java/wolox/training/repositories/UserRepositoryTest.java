@@ -46,12 +46,12 @@ public class UserRepositoryTest {
 	@Test
 	@Order(2)
 	public void GivenLoadedUsers_WhenSearchByUser_ThenFindUser() {
-		assertThat(userRepository.findFirstByUserName("Hawkeye").isPresent());
+		assertThat(userRepository.findFirstByUserName("Hawkeye").isPresent()).isTrue();
 	}
 
 	@Test
 	@Order(3)
 	public void GivenLoadedUsers_WhenSearchByNonExistentUser_ThenNotFindUser() {
-		assertThat(!userRepository.findFirstByUserName("Antman").isPresent());
+		assertThat(!userRepository.findFirstByUserName("Antman").isPresent()).isTrue();
 	}
 }

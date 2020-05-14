@@ -56,7 +56,7 @@ public class BookRepositoryTest {
 	@Order(3)
 	public void GivenLoadedBooks_whenSearchNonExistentAuthor_ThenNotFindBook() {
 		String author = "J. K. Rowling";
-		assertThat(!bookRepository.findFirstByAuthor(author).isPresent());
+		assertThat(!bookRepository.findFirstByAuthor(author).isPresent()).isTrue();
 	}
 
 	@Test
@@ -66,7 +66,7 @@ public class BookRepositoryTest {
 		String subtitle = "Sojourn";
 //		Book foundSubtitle = new Book();
 		List<Book> bookList = bookRepository.findByTitleOrderByYear(title);
-		assertThat(bookList.get(2).getSubtitle().contains(subtitle));
+		assertThat(bookList.get(2).getSubtitle().contains(subtitle)).isTrue();
 //		while (foundBook.hasNext()) {
 //			if (((Book) foundBook).getSubtitle().equals(subtitle)) {
 //				foundSubtitle = (Book) foundBook;
