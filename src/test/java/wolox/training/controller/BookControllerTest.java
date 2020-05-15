@@ -54,8 +54,8 @@ public class BookControllerTest {
 	@Order(1)
 	public void givenBook_whenGetBookByTitle_thenReturnBook() throws Exception {
 
-		Book darkelf1 = new Book("R. A. Salvatore", "imagen.png", "The Dark Elf", "Homeland", "TSR", "1990", 352,
-		        "0880389052");
+		Book darkelf1 = new Book("Fantasia", "R. A. Salvatore", "imagen.png", "The Dark Elf", "Homeland", "TSR", "1990",
+		        352, "0880389052");
 		String title = "The Dark Elf";
 
 		given(bookRepository.findFirstByTitle("The Dark Elf")).willReturn(Optional.of(darkelf1));
@@ -70,12 +70,12 @@ public class BookControllerTest {
 	@Order(2)
 	public void givenListOfBooks_whenGetBooksByTitle_thenFindBookBySubtitle() throws Exception {
 
-		Book darkelf1 = new Book("R. A. Salvatore", "imagen.png", "The Dark Elf", "Homeland", "TSR", "1990", 352,
-		        "0880389052");
-		Book darkelf2 = new Book("R. A. Salvatore", "imagen.png", "The Dark Elf", "Exile", "TSR", "1990", 320,
-		        "978-0880389204 ");
-		Book darkelf3 = new Book("R. A. Salvatore", "imagen.png", "The Dark Elf", "Sojourn", "TSR", "1991", 309,
-		        "1-56076-047-8");
+		Book darkelf1 = new Book("Fantasia", "R. A. Salvatore", "imagen.png", "The Dark Elf", "Homeland", "TSR", "1990",
+		        352, "0880389052");
+		Book darkelf2 = new Book("Fantasia", "R. A. Salvatore", "imagen.png", "The Dark Elf", "Exile", "TSR", "1990",
+		        320, "978-0880389204 ");
+		Book darkelf3 = new Book("Fantasia", "R. A. Salvatore", "imagen.png", "The Dark Elf", "Sojourn", "TSR", "1991",
+		        309, "1-56076-047-8");
 		List<Book> bookList = Arrays.asList(darkelf1, darkelf2, darkelf3);
 
 		given(bookRepository.findAll()).willReturn(bookList);
@@ -90,12 +90,12 @@ public class BookControllerTest {
 	public void givenListOfBooks_whenGetBooksByubtitle_thenNotFindBook() throws Exception {
 
 		String subtitle = "The Crystal Shard";
-		Book darkelf1 = new Book("R. A. Salvatore", "imagen.png", "The Dark Elf", "Homeland", "TSR", "1990", 352,
-		        "0880389052");
-		Book darkelf2 = new Book("R. A. Salvatore", "imagen.png", "The Dark Elf", "Exile", "TSR", "1990", 320,
-		        "978-0880389204 ");
-		Book darkelf3 = new Book("R. A. Salvatore", "imagen.png", "The Dark Elf", "Sojourn", "TSR", "1991", 309,
-		        "1-56076-047-8");
+		Book darkelf1 = new Book("Fantasia", "R. A. Salvatore", "imagen.png", "The Dark Elf", "Homeland", "TSR", "1990",
+		        352, "0880389052");
+		Book darkelf2 = new Book("Fantasia", "R. A. Salvatore", "imagen.png", "The Dark Elf", "Exile", "TSR", "1990",
+		        320, "978-0880389204 ");
+		Book darkelf3 = new Book("Fantasia", "R. A. Salvatore", "imagen.png", "The Dark Elf", "Sojourn", "TSR", "1991",
+		        309, "1-56076-047-8");
 		List<Book> bookList = Arrays.asList(darkelf1, darkelf2, darkelf3);
 
 		given(bookRepository.findAll()).willReturn(bookList);
@@ -110,8 +110,8 @@ public class BookControllerTest {
 	@Test
 	@Order(4)
 	public void GivenNewBook_WhenPostBook_ThenReturnCREATED() throws Exception {
-		Book icewind1 = new Book("R. A. Salvatore", "imagen.png", "The Icewind Dale", "The Crystal Shard", "TSR",
-		        "1988", 336, "978-0880385350");
+		Book icewind1 = new Book("Fantasia", "R. A. Salvatore", "imagen.png", "The Icewind Dale", "The Crystal Shard",
+		        "TSR", "1988", 336, "978-0880385350");
 
 		given(bookRepository.save(any())).willReturn(icewind1);
 
@@ -123,10 +123,10 @@ public class BookControllerTest {
 	@Test
 	@Order(5)
 	public void GivenModifiedBook_WhenPutBook_ThenReturnOK() throws Exception {
-		Book icewind2 = new Book("R. A. Salvatore", "imagen.png", "The Icewind Dale", "Trilogy", "TSR", "1989", 342,
-		        "0-88038-672-X");
-		Book icewind2Ammend = new Book("R. A. Salvatore", "imagen.png", "The Icewind Dale", "Streams of Silver", "TSR",
+		Book icewind2 = new Book("Fantasia", "R. A. Salvatore", "imagen.png", "The Icewind Dale", "Trilogy", "TSR",
 		        "1989", 342, "0-88038-672-X");
+		Book icewind2Ammend = new Book("Fantasia", "R. A. Salvatore", "imagen.png", "The Icewind Dale",
+		        "Streams of Silver", "TSR", "1989", 342, "0-88038-672-X");
 
 		given(bookRepository.findById(any())).willReturn(Optional.of(icewind2));
 		given(bookRepository.save(any())).willReturn(icewind2Ammend);
@@ -139,8 +139,8 @@ public class BookControllerTest {
 	@Test
 	@Order(5)
 	public void GivenBook_WhenDeleteBook_ThenReturnOK() throws Exception {
-		Book icewind3 = new Book("R. A. Salvatore", "imagen.png", "The Icewind Dale", "The Halfling's Gem", "TSR",
-		        "1990", 314, "978-0880389013");
+		Book icewind3 = new Book("Fantasia", "R. A. Salvatore", "imagen.png", "The Icewind Dale", "The Halfling's Gem",
+		        "TSR", "1990", 314, "978-0880389013");
 
 		given(bookRepository.findById(any())).willReturn(Optional.of(icewind3));
 
@@ -151,8 +151,8 @@ public class BookControllerTest {
 	@Test
 	@Order(6)
 	public void GivenModifiedBook_WhenPutBook_ThenReturnBadRequest() throws Exception {
-		Book icewind3 = new Book("R. A. Salvatore", "imagen.png", "The Icewind Dale", "Streams of Silver", "TSR",
-		        "1989", 342, "0-88038-672-X");
+		Book icewind3 = new Book("Fantasia", "R. A. Salvatore", "imagen.png", "The Icewind Dale", "Streams of Silver",
+		        "TSR", "1989", 342, "0-88038-672-X");
 
 		mvc.perform(put("/api/books/1").contentType(MediaType.APPLICATION_JSON).characterEncoding("UTF-8")
 		        .content(asJsonString(icewind3))).andDo(print()).andExpect(status().isBadRequest());

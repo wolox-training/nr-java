@@ -22,7 +22,7 @@ public class Book {
 
 	@ManyToMany(mappedBy = "books")
 	@JsonIgnore
-	private List<User> User;
+	private List<User> user;
 
 	private String genre;
 
@@ -53,9 +53,10 @@ public class Book {
 	public Book() {
 	}
 
-	public Book(String author, String image, String title, String subtitle, String publisher, String year, int pages,
-	        String isbn) {
+	public Book(String genre, String author, String image, String title, String subtitle, String publisher, String year,
+	        int pages, String isbn) {
 		super();
+		this.genre = genre;
 		this.author = author;
 		this.image = image;
 		this.title = title;

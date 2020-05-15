@@ -46,12 +46,26 @@ public class UserRepositoryTest {
 	@Test
 	@Order(2)
 	public void GivenLoadedUsers_WhenSearchByUser_ThenFindUser() {
-		assertThat(userRepository.findFirstByUserName("Hawkeye").isPresent());
+		assertThat(userRepository.findFirstByUserName("Hawkeye").isPresent()).isTrue();
 	}
 
 	@Test
 	@Order(3)
 	public void GivenLoadedUsers_WhenSearchByNonExistentUser_ThenNotFindUser() {
-		assertThat(!userRepository.findFirstByUserName("Antman").isPresent());
+		assertThat(!userRepository.findFirstByUserName("Antman").isPresent()).isTrue();
 	}
+
+	@Test
+	@Order(4)
+	public void GivenLoadedusers_WhenSearchByNameContainedAndBetweenTwoBirtdates_ThenFindUsers() {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+		LocalDate dateSince = LocalDate.parse("1970-01-01", formatter);
+		LocalDate dateUntil = LocalDate.parse("2020-12-31", formatter);
+		String name = "Peter";
+		Iterable<User> foundUser = userRepository.findByBirthDateBetweenAndNameContainingIgnoreCase(dateSince,
+		        dateUntil, name);
+		assertThat(foundUser).hasSize(1);
+	}
+
 }
