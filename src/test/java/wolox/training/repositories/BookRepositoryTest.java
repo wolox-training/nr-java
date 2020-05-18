@@ -99,7 +99,7 @@ public class BookRepositoryTest {
 	}
 
 	@Test
-	@Order(6)
+	@Order(7)
 	public void GivenLoadedBooks_WhenSearchForPublisherAndGenreAndYearEqualNull_ThenFindBook() {
 		String publisher = "TSR";
 		String genre = "Fantasia";

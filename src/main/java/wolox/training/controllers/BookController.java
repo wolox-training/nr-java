@@ -39,6 +39,18 @@ public class BookController {
 		return bookRepository.findAll();
 	}
 
+// getAll dinámico	
+	@GetMapping("/find")
+	public Iterable<Book> findBook(@RequestParam(required = false) String id,
+	        @RequestParam(required = false) String genre, @RequestParam(required = false) String author,
+	        @RequestParam(required = false) String image, @RequestParam(required = false) String title,
+	        @RequestParam(required = false) String subtitle, @RequestParam(required = false) String publisher,
+	        @RequestParam(required = false) String yearFrom, @RequestParam(required = false) String yearTo,
+	        @RequestParam(required = false) String pages, @RequestParam(required = false) String isbn) {
+		return bookRepository.findBook(id, genre, author, image, title, subtitle, publisher, yearFrom, yearTo, pages,
+		        isbn);
+	}
+
 	@GetMapping("/{id}")
 	public Book findOne(@PathVariable(required = true) Long id) {
 		return bookRepository.findById(id)
