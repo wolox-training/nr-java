@@ -68,4 +68,17 @@ public class UserRepositoryTest {
 		assertThat(foundUser).hasSize(1);
 	}
 
+	@Test
+	@Order(5)
+	public void GivenLoadedusers_WhenSearchByNullNameContainedAndBetweenTwoBirtdates_ThenFindUsers() {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+		LocalDate dateSince = LocalDate.parse("1970-01-01", formatter);
+		LocalDate dateUntil = LocalDate.parse("2020-12-31", formatter);
+		String name = null;
+		Iterable<User> foundUser = userRepository.findByBirthDateBetweenAndNameContainingIgnoreCase(dateSince,
+		        dateUntil, name);
+		assertThat(foundUser).hasSize(2);
+	}
+
 }

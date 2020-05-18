@@ -97,4 +97,14 @@ public class BookRepositoryTest {
 		Iterable<Book> books = bookRepository.findByPublisherAndGenreAndYear(publisher, genre, year);
 		assertThat(books).hasSize(2);
 	}
+
+	@Test
+	@Order(7)
+	public void GivenLoadedBooks_WhenSearchForPublisherAndGenreAndYearEqualNull_ThenFindBook() {
+		String publisher = "TSR";
+		String genre = "Fantasia";
+		String year = null;
+		Iterable<Book> books = bookRepository.findByPublisherAndGenreAndYear(publisher, genre, year);
+		assertThat(books).hasSize(4);
+	}
 }
